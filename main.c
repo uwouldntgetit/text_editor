@@ -47,7 +47,7 @@ static void activate(GtkApplication* app, gpointer user_data)
 	data = g_new0(struct Data, 1);
 	data->finestra = finestra;
 
-	g_signal_connect(apri, "clicked", G_CALLBACK(seleziona_file), finestra);
+	g_signal_connect(apri, "clicked", G_CALLBACK(seleziona_file), data);
 
 	gtk_widget_show(finestra);
 }
