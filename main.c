@@ -5,6 +5,7 @@
 struct Data
 {
 	GtkWidget *finestra;
+	GtkTextBuffer *buffertesto;
 };
 
 void set_style_class(GtkWidget *w, char c[])
@@ -14,8 +15,9 @@ void set_style_class(GtkWidget *w, char c[])
 
 void seleziona_file(GtkWidget *button, gpointer user_data)
 {
-   struct Data *d = user_data;
-	GtkWidget *dialog;
+	struct Data *d = user_data;
+	gtk_text_buffer_set_text(d->buffertesto, "CLICK", 6);
+	/* GtkWidget *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
 	dialog = gtk_file_chooser_dialog_new ("Scegli File",
@@ -27,7 +29,7 @@ void seleziona_file(GtkWidget *button, gpointer user_data)
 			GTK_RESPONSE_ACCEPT,
 			NULL);
 
-	gtk_widget_show (dialog);
+	gtk_widget_show (dialog); */
 }
 
 static void activate(GtkApplication* app, gpointer user_data)
@@ -35,17 +37,18 @@ static void activate(GtkApplication* app, gpointer user_data)
 	GtkBuilder *builder = gtk_builder_new_from_resource("/text-editor/text-editor.ui");
 
 	GtkWidget *finestra = GTK_WIDGET(gtk_builder_get_object(builder, "finestra"));
-	// GtkWidget *testo = GTK_WIDGET(gtk_builder_get_object(builder, "testo"));
+	GtkWidget *testo = GTK_WIDGET(gtk_builder_get_object(builder, "testo"));
 	GtkWidget *apri = GTK_WIDGET(gtk_builder_get_object(builder, "open"));
 	// GtkWidget *salva = GTK_WIDGET(gtk_builder_get_object(builder, "salva"));
-	// GtkTextBuffer *buffertesto = gtk_text_view_get_buffer(GTK_TEXT_VIEW(testo));
+	GtkTextBuffer *buffertesto = gtk_text_view_get_buffer(GTK_TEXT_VIEW(testo));
 
-	// gtk_text_buffer_set_text(buffertesto, "Inserisci testo", 100);
+	gtk_text_buffer_set_text(buffertesto, "Inserisci testo", 15);
 	gtk_window_set_application(GTK_WINDOW(finestra), app);
 
 	struct Data *data;
 	data = g_new0(struct Data, 1);
 	data->finestra = finestra;
+	data->buffertesto = buffertesto;
 
 	g_signal_connect(apri, "clicked", G_CALLBACK(seleziona_file), data);
 
