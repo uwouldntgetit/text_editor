@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE cambalache-project SYSTEM "cambalache-project.dtd">
+<cambalache-project version="0.10.3" target_tk="gtk-4.0">
+  <ui>
+	(1,None,"text-editor.ui","text-editor.ui",None,None,None,None,None,None)
+  </ui>
+  <object>
+	(1,1,"GtkApplicationWindow","finestra",None,None,None,None,None),
+	(1,5,"GtkHeaderBar","headerbar",1,None,"titlebar",None,None),
+	(1,6,"GtkButton","salva",5,None,None,None,1),
+	(1,7,"GtkButton","apri",5,None,None,None,None),
+	(1,8,"GtkScrolledWindow",None,1,None,None,None,None),
+	(1,9,"GtkTextView","testo",8,None,None,None,None)
+  </object>
+  <object_property>
+	(1,1,"GtkWindow","default-height","500",None,None,None,None,None),
+	(1,1,"GtkWindow","default-width","500",None,None,None,None,None),
+	(1,1,"GtkWindow","title","Editor di testo",None,None,None,None,None),
+	(1,6,"GtkButton","label","Salva",None,None,None,None,None),
+	(1,6,"GtkWidget","css-classes","suggested-action",None,None,None,None,None),
+	(1,7,"GtkButton","label","Apri",None,None,None,None,None)
+  </object_property>
+</cambalache-project>
