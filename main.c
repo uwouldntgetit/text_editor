@@ -49,10 +49,10 @@ static void activate(GtkApplication* app, gpointer user_data)
 	GtkBuilder *builder = gtk_builder_new_from_resource("/text-editor/text-editor.ui");
 
 	GtkWidget *finestra = GTK_WIDGET(gtk_builder_get_object(builder, "finestra"));
-	GtkWidget *testo = GTK_WIDGET(gtk_builder_get_object(builder, "testo"));
-	GtkWidget *apri = GTK_WIDGET(gtk_builder_get_object(builder, "open"));
-	GtkWidget *salva = GTK_WIDGET(gtk_builder_get_object(builder, "salva"));
-	GtkTextBuffer *buffertesto = gtk_text_view_get_buffer(GTK_TEXT_VIEW(testo));
+	// GtkWidget *testo = GTK_WIDGET(gtk_builder_get_object(builder, "testo"));
+	// GtkWidget *apri = GTK_WIDGET(gtk_builder_get_object(builder, "open"));
+	// GtkWidget *salva = GTK_WIDGET(gtk_builder_get_object(builder, "salva"));
+	// GtkTextBuffer *buffertesto = gtk_text_view_get_buffer(GTK_TEXT_VIEW(testo));
 
 	// gtk_text_buffer_set_text(buffertesto, "Inserisci testo", 100);
 	// char *t = gtk_text_buffer_get_text(GTK_TEXT_BUFFER(buffertesto),gtk_text_buffer_get_start, gtk_text_buffer_get_end_iter, true);
