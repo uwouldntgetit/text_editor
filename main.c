@@ -4,7 +4,7 @@
 
 struct Data
 {
-	GtkWindow *finestra;
+	GtkWidget *finestra;
 };
 
 void set_style_class(GtkWidget *w, char c[])
@@ -12,28 +12,14 @@ void set_style_class(GtkWidget *w, char c[])
 	gtk_widget_add_css_class(w, c);
 }
 
-/*
-   void calc(GtkWidget *button, gpointer user_data)
-   {
-   struct Data *d = user_data;
-   GtkEntryBuffer *buffer;
-   buffer = gtk_entry_get_buffer(GTK_ENTRY(d->entry));
-   const char *text = gtk_entry_buffer_get_text(GTK_ENTRY_BUFFER(buffer));
-   char res[100];
-   snprintf(res, sizeof res, "%s = %.2f", text, calcolo(text));
-   gtk_label_set_text(GTK_LABEL(d->label), res);
-   }
-   */
-
-/* void seleziona_file(GtkWidget *button, gpointer user_data)
+void seleziona_file(GtkWidget *button, gpointer user_data)
 {
+   struct Data *d = user_data;
 	GtkWidget *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
-	struct Data *d = user_data;
-
 	dialog = gtk_file_chooser_dialog_new ("Scegli File",
-			d->finestra,
+			GTK_WINDOW(d->finestra),
 			action,
 			"Annulla",
 			GTK_RESPONSE_CANCEL,
@@ -42,7 +28,7 @@ void set_style_class(GtkWidget *w, char c[])
 			NULL);
 
 	gtk_widget_show (dialog);
-} */
+}
 
 static void activate(GtkApplication* app, gpointer user_data)
 {
@@ -50,25 +36,20 @@ static void activate(GtkApplication* app, gpointer user_data)
 
 	GtkWidget *finestra = GTK_WIDGET(gtk_builder_get_object(builder, "finestra"));
 	// GtkWidget *testo = GTK_WIDGET(gtk_builder_get_object(builder, "testo"));
-	// GtkWidget *apri = GTK_WIDGET(gtk_builder_get_object(builder, "open"));
+	GtkWidget *apri = GTK_WIDGET(gtk_builder_get_object(builder, "open"));
 	// GtkWidget *salva = GTK_WIDGET(gtk_builder_get_object(builder, "salva"));
 	// GtkTextBuffer *buffertesto = gtk_text_view_get_buffer(GTK_TEXT_VIEW(testo));
 
 	// gtk_text_buffer_set_text(buffertesto, "Inserisci testo", 100);
-	// char *t = gtk_text_buffer_get_text(GTK_TEXT_BUFFER(buffertesto),gtk_text_buffer_get_start, gtk_text_buffer_get_end_iter, true);
 	gtk_window_set_application(GTK_WINDOW(finestra), app);
 
-	/*
-	   struct Data *data;
-	   data = g_new0(struct Data, 1);
-	   data->entry = input;
-	   data->label = result;
-	   */
+	struct Data *data;
+	data = g_new0(struct Data, 1);
+	data->finestra = finestra;
 
-	// g_signal_connect(apri, "clicked", G_CALLBACK(seleziona_file), NULL);
+	g_signal_connect(apri, "clicked", G_CALLBACK(seleziona_file), finestra);
 
 	gtk_widget_show(finestra);
-	// g_signal_connect(text_input, "changed", G_CALLBACK(update_entry), label);
 }
 
 int main(int argc, char **argv)
