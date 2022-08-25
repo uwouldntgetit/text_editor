@@ -8,16 +8,12 @@ struct Data
 	GtkTextBuffer *buffertesto;
 };
 
-void set_style_class(GtkWidget *w, char c[])
-{
-	gtk_widget_add_css_class(w, c);
-}
-
 void seleziona_file(GtkWidget *button, gpointer user_data)
 {
 	struct Data *d = user_data;
-	gtk_text_buffer_set_text(d->buffertesto, "CLICK", 6);
-	/* GtkWidget *dialog;
+	// GtkTextBuffer *buffertesto = d->buffertesto;
+	// gtk_text_buffer_set_text(buffertesto, "CLICK", 5);
+	GtkWidget *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
 	dialog = gtk_file_chooser_dialog_new ("Scegli File",
@@ -29,7 +25,7 @@ void seleziona_file(GtkWidget *button, gpointer user_data)
 			GTK_RESPONSE_ACCEPT,
 			NULL);
 
-	gtk_widget_show (dialog); */
+	gtk_widget_show (dialog);
 }
 
 static void activate(GtkApplication* app, gpointer user_data)
@@ -38,7 +34,7 @@ static void activate(GtkApplication* app, gpointer user_data)
 
 	GtkWidget *finestra = GTK_WIDGET(gtk_builder_get_object(builder, "finestra"));
 	GtkWidget *testo = GTK_WIDGET(gtk_builder_get_object(builder, "testo"));
-	GtkWidget *apri = GTK_WIDGET(gtk_builder_get_object(builder, "open"));
+	GtkWidget *apri = GTK_WIDGET(gtk_builder_get_object(builder, "apri"));
 	// GtkWidget *salva = GTK_WIDGET(gtk_builder_get_object(builder, "salva"));
 	GtkTextBuffer *buffertesto = gtk_text_view_get_buffer(GTK_TEXT_VIEW(testo));
 

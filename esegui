@@ -1,0 +1,6 @@
+#!/bin/sh
+
+d="./build/"
+b="text-editor"
+
+ninja -C "$d" && "$d"/"$b"
